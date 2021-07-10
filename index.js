@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-mongoose.connect('mongodb://localhost:27017/mydbn',{
+mongoose.connect('mongodb+srv://smoke12:hellomoto@cluster0.ibktn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority/mydbn',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -50,6 +50,18 @@ app.get('/',(req,res)=>{
     return res.redirect('index.html');
 }).listen(3000);
 
+
+const dbSchema = {
+    name: String,
+    email: String,
+    phone: String,
+    aadhar: String,
+    address: String,
+    doseNO: String,
+    vacName: String
+}
+
+const mydb = mongoose.model('mydb',dbSchema)
 
 app.get('/view',(req,resp)=>{
     db.collection('users').find().toArray((err,result)=>{
